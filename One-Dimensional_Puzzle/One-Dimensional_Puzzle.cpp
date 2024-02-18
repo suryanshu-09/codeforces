@@ -1,19 +1,16 @@
 #include "Element.cpp"
-#include <set>
+#include <sstream>
+#include <string>
 
-int lenght_of_array(int *input_array){
-    return sizeof(input_array)/sizeof(input_array[0]);
-}
-
-int total_Elements(int* input_array, int len){
+int total_Elements(std::vector<int> input_array, int len){
     int sum = 0;
     for(int i = 0; i < len; i++){
-        sum += *(input_array + i);
+        sum += input_array[i];
     }
     return sum;
 }
 
-void initialise(int *input_array, int len){
+void initialise(std::vector<int> input_array, int len){
     Sides left_ele1(false, true, false);
     Sides left_ele2(true, false, true);
     Sides left_ele3(true, false, true);
@@ -47,8 +44,23 @@ void initialise(int *input_array, int len){
 }
 
 int main() {
-    int input_array[] = {1, 1, 1, 1};
-    int len = sizeof(input_array)/sizeof(input_array[0]);
-    initialise(input_array, len);
+    int total;
+    std::cin >> total;
+    std::cin.ignore();
+    std::vector<std::vector<int>> inputs;
+    for(int i = 0; i < total; i++){
+        std::string line;
+        std::getline(std::cin, line); 
+        std::istringstream iss(line);
+        std::vector<int> intArray;
+        int num;
+        while (iss >> num) {
+            intArray.push_back(num);
+        }
+        inputs.push_back(intArray);
+    }
+    for(std::vector<int> vec : inputs){
+        initialise(vec, vec.size());
+    }
     return 0;
 }
