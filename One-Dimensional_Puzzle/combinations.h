@@ -3,8 +3,10 @@
 
 #include <vector>
 
-void generateCombinations(const std::vector<int>& nums, int start, std::vector<int>& current, std::vector<std::vector<int>>& result);
-std::vector<std::vector<int>> getAllCombinations(const std::vector<int>& nums);
+class Combinations {
+public:
+    std::vector<std::vector<int>> getPermutations(const std::vector<int>& elements, int length) const;
+};
 
-#endif
+#endif // COMBINATIONS_H
 

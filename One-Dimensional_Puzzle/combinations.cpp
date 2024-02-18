@@ -1,18 +1,22 @@
 #include "combinations.h"
+#include <vector>
+#include <algorithm>
 
-void generateCombinations(const std::vector<int>& nums, int start, std::vector<int>& current, std::vector<std::vector<int>>& result) {
-    result.push_back(current); // Add the current combination to the result
+std::vector<std::vector<int>> Combinations::getPermutations(const std::vector<int>& elements, int length) const {
+    std::vector<std::vector<int>> permutations;
+    std::vector<int> sortedElements = elements;
 
-    for (int i = start; i < nums.size(); ++i) {
-        current.push_back(nums[i]); // Include nums[i] in the current combination
-        generateCombinations(nums, i + 1, current, result); // Recursively generate combinations starting from i + 1
-        current.pop_back(); // Backtrack: remove nums[i] from the current combination
-    }
+    // Sort the elements to get permutations in lexicographically sorted order
+    std::sort(sortedElements.begin(), sortedElements.end());
+
+    do {
+        std::vector<int> currentPermutation;
+        for (int i = 0; i < length; ++i) {
+            currentPermutation.push_back(sortedElements[i]);
+        }
+        permutations.push_back(currentPermutation);
+    } while (std::next_permutation(sortedElements.begin(), sortedElements.end()));
+
+    return permutations;
 }
 
-std::vector<std::vector<int>> getAllCombinations(const std::vector<int>& nums) {
-    std::vector<std::vector<int>> result;
-    std::vector<int> current;
-    generateCombinations(nums, 0, current, result);
-    return result;
-}

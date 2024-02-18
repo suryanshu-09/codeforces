@@ -27,17 +27,21 @@ public:
     Sides left;
     Sides right;
     static void combinationChecker(std::vector<int> arr, int len, Element element_Array[]){
-        std::vector<std::vector<int>> combinations = getAllCombinations(arr);
-        for(auto& combination : combinations){
+        int counter = 0;
+        Combinations perms;
+        auto permutations = perms.getPermutations(arr, len);
+        for(auto& permutation : permutations){
             int i = 0;
             Element ele_ray[len];
-            for(int num : combination){
+            for(int num : permutation){
                ele_ray[i++] = element_Array[num];
             }
-            if(polarisationChecker){
+            if(polarisationChecker(ele_ray, len)){
                 displayLineAnimation(ele_ray, len);
+                counter++;
             }
         }
+        std::cout << counter << std::endl;
     }
     std::array<int, 2> polarisationFunction(){
         return {this->left.polarisation(), this->right.polarisation()};

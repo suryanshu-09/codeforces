@@ -27,20 +27,22 @@ void initialise(int *input_array, int len){
     Element element3(3, left_ele3, right_ele3);
     Element element4(4, left_ele4, right_ele4);
     std::vector<int> e_ray = {};
-    //Element element_array[total_Elements(input_array, len)];
+    int total = total_Elements(input_array, len);
+    Element element_array[total];
     Element element_Array[] = {element1, element2, element3, element4};
-    //int count = 0;
+    int count = 0;
     for(int i = 0; i < len; i++){
         for(int j = 0; j < input_array[i]; j++){
             e_ray.push_back(i);
-            //element_array[count++] = element_Array[i];
+            element_array[count++] = element_Array[i];
         }    
     }
-    int length = sizeof(e_ray)/sizeof(e_ray[0]);
-    //Element::displayLineAnimation(element_array, length);
-    //Element::displayLine(element_array, length);
-    //std::cout << Element::polarisationChecker(element_array, length) << std::endl; 
-    Element::combinationChecker(e_ray, length, element_Array);
+    //int length_ele = sizeof(e_ray)/sizeof(e_ray[0]);
+    //int length_element = sizeof(element_array)/sizeof(element_array[0]);
+    //Element::displayLineAnimation(element_array, length_element);
+    //Element::displayLine(element_array, length_element);
+    //std::cout << Element::polarisationChecker(element_array, length_element) << std::endl; 
+    Element::combinationChecker(e_ray, total, element_Array);
     std::cout << std::endl;
 }
 
